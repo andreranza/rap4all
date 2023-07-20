@@ -81,6 +81,7 @@ clean_raw_data <- function(raw_data){
                              locality)
            ) %>%
     filter(!grepl("Source", locality)) %>%
+    mutate(across(starts_with("average"), ~ na_if(.x, "*"))) %>%
     mutate(across(starts_with("average"), as.numeric))
 }
 ```
